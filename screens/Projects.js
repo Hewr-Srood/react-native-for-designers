@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Animated, PanResponder } from "react-native";
+import { Animated, PanResponder, SafeAreaView } from "react-native";
 import { useSelector } from "react-redux";
 import { vh } from "react-native-expo-viewport-units";
 import styled from "styled-components/native";
@@ -103,65 +103,68 @@ const Projects = () => {
     },
   });
   return (
-    <Container style={{ marginTop: 30 }}>
-      <AnimatedMask style={{ opacity: opacity }} />
-      <Animated.View
-        style={{
-          transform: [{ translateX: pan.x }, { translateY: pan.y }],
-        }}
-        {...resp.panHandlers}
-      >
-        <Project
-          title={projects[index].title}
-          author={projects[index].author}
-          image={projects[index].image}
-          text={projects[index].text}
-          shouldOpen={true}
-        />
-      </Animated.View>
-      <Animated.View
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: -1,
-          width: "100%",
-          height: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          transform: [{ scale: scale }, { translateY: translateY }],
-        }}
-      >
-        <Project
-          title={projects[nextIndex(index)].title}
-          author={projects[nextIndex(index)].author}
-          image={projects[nextIndex(index)].image}
-          text={projects[nextIndex(index)].text}
-          shouldOpen={false}
-        />
-      </Animated.View>
-      <Animated.View
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: -3,
-          width: "100%",
-          height: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          transform: [{ scale: thirdScale }, { translateY: thirdTranslateY }],
-        }}
-      >
-        <Project
-          title={projects[nextIndex(index + 1)].title}
-          author={projects[nextIndex(index + 1)].author}
-          image={projects[nextIndex(index + 1)].image}
-          text={projects[nextIndex(index + 1)].text}
-          shouldOpen={false}
-        />
-      </Animated.View>
-    </Container>
+    <SafeAreaView>
+      <Container style={{ marginTop: 30 }}>
+        <AnimatedMask style={{ opacity: opacity }} />
+        <Animated.View
+          style={{
+            transform: [{ translateX: pan.x }, { translateY: pan.y }],
+          }}
+          {...resp.panHandlers}
+        >
+          <Project
+            title={projects[index].title}
+            author={projects[index].author}
+            image={projects[index].image}
+            text={projects[index].text}
+            shouldOpen={true}
+          />
+        </Animated.View>
+        <Animated.View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: -1,
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            transform: [{ scale: scale }, { translateY: translateY }],
+          }}
+        >
+          <Project
+            title={projects[nextIndex(index)].title}
+            author={projects[nextIndex(index)].author}
+            image={projects[nextIndex(index)].image}
+            text={projects[nextIndex(index)].text}
+            shouldOpen={false}
+          />
+        </Animated.View>
+        <Animated.View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: -3,
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            transform: [{ scale: thirdScale }, { translateY: thirdTranslateY }],
+          }}
+        >
+          <Project
+            title={projects[nextIndex(index + 1)].title}
+            author={projects[nextIndex(index + 1)].author}
+            image={projects[nextIndex(index + 1)].image}
+            text={projects[nextIndex(index + 1)].text}
+            shouldOpen={false}
+          />
+        </Animated.View>
+      </Container>
+    </SafeAreaView>
+
   );
 };
 export default Projects;

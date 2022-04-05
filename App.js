@@ -18,11 +18,11 @@ const client = new ApolloClient({
 });
 
 export default function App() {
-  StatusBar.setBackgroundColor("#f0f3f5");
+
   return (
     <Provider store={myStore}>
       <ApolloProvider client={client}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar backgroundColor={"#f0f3f5"} barStyle="dark-content" />
         <AppNavigator />
       </ApolloProvider>
     </Provider>
